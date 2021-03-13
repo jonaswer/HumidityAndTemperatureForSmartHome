@@ -1,6 +1,5 @@
 <?php
 
-
 $dbhost = "<your hostname>";
 $dbuser = "<select dabase user>";
 $dbpass = "<database passwort>";
@@ -13,7 +12,7 @@ if ($conn)
         //echo "connected";
 }
 
-$query = "SELECT * FROM DataLake";
+$query = "SELECT * FROM DataLake"; //your table name
 
 $sqlQuery = mysqli_query($conn, $query);
 
@@ -22,7 +21,7 @@ if (!$sqlQuery)
         echo "SQL query error";
 }
 
-$query2 = "DELETE FROM DataLake WHERE timestamp  < (NOW() - INTERVAL 2 DAY)";
+$query2 = "DELETE FROM DataLake WHERE timestamp  < (NOW() - INTERVAL 2 DAY)"; //your table name
 
 $sqlQuery2 = mysqli_query($conn, $query2);
 
@@ -40,7 +39,7 @@ class DataSet
 
         function __construct($sqlQuery){
                 while ($row = mysqli_fetch_array($sqlQuery)){
-                        $dataArray[]=array($row["ID"],$row["timestamp"],$row["temperature"],$row["humidity"]);
+                        $dataArray[]=array($row["ID"],$row["timestamp"],$row["temperature"],$row["humidity"]); //ID and timestamp is optional, in case its part the database table
                         $this->dataArray = $dataArray;
                         }
                 $this->lastData = end($this->dataArray);
